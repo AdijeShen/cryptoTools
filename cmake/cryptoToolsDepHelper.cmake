@@ -26,7 +26,7 @@ if(NOT DEFINED OC_THIRDPARTY_HINT)
 
     if(EXISTS ${CMAKE_CURRENT_LIST_DIR}/cryptoToolsFindBuildDir.cmake)
         # we currenty are in the cryptoTools source tree, cryptoTools/cmake
-        set(OC_THIRDPARTY_HINT "${CMAKE_CURRENT_LIST_DIR}/../out/install/${OC_CONFIG}")
+        set(OC_THIRDPARTY_HINT "${CMAKE_CURRENT_BINARY_DIR}/${OC_CONFIG}")
         
         if(NOT DEFINED OC_THIRDPARTY_INSTALL_PREFIX)
         
@@ -40,7 +40,7 @@ endif()
 
 
 if(NOT OC_THIRDPARTY_CLONE_DIR)
-    set(OC_THIRDPARTY_CLONE_DIR "${CMAKE_CURRENT_LIST_DIR}/../out")
+    set(OC_THIRDPARTY_CLONE_DIR "${CMAKE_CURRENT_BINARY_DIR}/")
 endif()
 
 set(PUSHED_CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH})

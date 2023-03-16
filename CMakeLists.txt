@@ -65,14 +65,14 @@ endif()
 #                  CONFIGURE                #
 #############################################
 option(ENABLE_SPAN_LITE "use the span-lite library" ON)
-option(ENABLE_RELIC     "use the relic library" OFF)
+option(ENABLE_RELIC     "use the relic library" ON)
 option(ENABLE_SODIUM    "use libsodium" OFF)
 option(ENABLE_CIRCUITS  "compile the circuit module" OFF)
 option(ENABLE_NET_LOG   "compile with network logging" OFF)
 option(ENABLE_WOLFSSL   "compiler with WolfSSL enabled" OFF)
 option(ENABLE_SSE       "compile with SSE instructions" ON)
 option(ENABLE_AVX       "compile with AVX instructions" ${ENABLE_SSE})
-option(ENABLE_BOOST     "compile with BOOST networking integration" OFF)
+option(ENABLE_BOOST     "compile with BOOST networking integration" ON)
 option(ENABLE_OPENSSL   "compile with OpenSSL networking integration" OFF)
 option(ENABLE_ASAN      "build with asan" OFF)
 option(ENABLE_PIC       "compile with -fPIC " OFF)
@@ -86,24 +86,24 @@ if(NOT ENABLE_SSE)
 	set(ENABLE_AVX OFF)
 endif()
 
-option(FETCH_AUTO      "automatically download and build dependencies" OFF)
+option(FETCH_AUTO      "automatically download and build dependencies" ON)
 
-#option(FETCH_SPAN_LITE		"download and build span" OFF))
+option(FETCH_SPAN_LITE		"download and build span" ON)
 EVAL(FETCH_SPAN_LITE_IMPL 
 	(DEFINED FETCH_SPAN_LITE AND FETCH_SPAN_LITE) OR
 	((NOT DEFINED FETCH_SPAN_LITE) AND (FETCH_AUTO AND ENABLE_SPAN_LITE)))
 
-#option(FETCH_RELIC		"download and build Relic" OFF))
+option(FETCH_RELIC		"download and build Relic" ON)
 EVAL(FETCH_RELIC_IMPL 
 	(DEFINED FETCH_RELIC AND FETCH_RELIC) OR
 	((NOT DEFINED FETCH_RELIC) AND (FETCH_AUTO AND ENABLE_RELIC)))
 
-#option(FETCH_SODIUM	"download and build Sodium" OFF))
+option(FETCH_SODIUM	"download and build Sodium" OFF)
 EVAL(FETCH_SODIUM_IMPL 
 	(DEFINED FETCH_SODIUM AND FETCH_SODIUM) OR
 	((NOT DEFINED FETCH_SODIUM) AND (FETCH_AUTO AND ENABLE_SODIUM)))
 	
-#option(FETCH_BOOST	"download and build Boost" OFF))
+option(FETCH_BOOST	"download and build Boost" ON)
 EVAL(FETCH_BOOST_IMPL 
 	(DEFINED FETCH_BOOST AND FETCH_BOOST) OR
 	((NOT DEFINED FETCH_BOOST) AND (FETCH_AUTO AND ENABLE_BOOST)))
@@ -112,7 +112,7 @@ if(ENABLE_BOOST)
 	set(ENABLE_COPROTO true)
 endif()
 
-#option(FETCH_BOOST	"download and build Boost" OFF))
+option(FETCH_COPROTO	"download and build COPROTO" ON)
 EVAL(FETCH_COPROTO_IMPL 
 	(DEFINED FETCH_COPROTO AND FETCH_COPROTO) OR
 	((NOT DEFINED FETCH_COPROTO) AND (FETCH_AUTO AND ENABLE_COPROTO)))
